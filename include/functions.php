@@ -4,12 +4,12 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 // add sub menu page to the woocommerce menu
 add_action( 'admin_menu', 'wcatct_add_to_cart_text_settings_page_func' );
 function wcatct_add_to_cart_text_settings_page_func() {
-    add_submenu_page( 'woocommerce', __( 'Change Add to Cart Text', 'change-add-to-cart-all-text' ), __( 'Add to Cart Text Change', 'change-add-to-cart-all-text' ), 'manage_options', 'change-add-to-cart-all-text', 'wcatct_add_to_cart_text_settings_page_callback' );
+    add_submenu_page( 'woocommerce', esc_html__( 'Change Add to Cart Text', 'change-add-to-cart-all-text' ), esc_html__( 'Add to Cart Text Change', 'change-add-to-cart-all-text' ), 'manage_options', 'change-add-to-cart-all-text', 'wcatct_add_to_cart_text_settings_page_callback' );
 }
 
 add_action('admin_enqueue_scripts', 'wcatct_admin_enqueue_scripts');
 function wcatct_admin_enqueue_scripts(){
-  if ( isset( $_GET["page"] ) &&  $_GET["page"] == "change-add-to-cart-all-text" ){     
+  if ( isset( $_GET["page"] ) &&  $_GET["page"] == "change-add-to-cart-all-text" ){
     wp_enqueue_style('wcatct_admin_style', plugins_url('admin/css/style.css', dirname(__FILE__) ) );
 	wp_enqueue_script( "woocatct-admin-script", plugins_url('admin/js/main.js', dirname(__FILE__) ), array("jquery"), '1.0.0', true );
   }
@@ -27,8 +27,8 @@ function wcatct_add_to_cart_text_settings_page_callback() {
 				<div class="wcatct_form_group">
 					<div class="wcatct_global_txt_outer_wrap">
 						<div class="wcatct_field">
-							<label for="wcatct_global_txt"><?php print _e( 'Global' ); ?></label>
-							<input type="text" id="wcatct_global_txt" name="wcatct_global_txt" value="<?php print get_option( 'wcatct_global_txt' ); ?>" placeholder="<?php print _e( 'Add to Cart' ); ?>">
+							<label for="wcatct_global_txt"><?php esc_html_e( 'Global' ); ?></label>
+							<input type="text" id="wcatct_global_txt" name="wcatct_global_txt" value="<?php print esc_html(get_option( 'wcatct_global_txt' )); ?>" placeholder="<?php echo esc_html__( 'Add to Cart' ); ?>">
 							<small>Archive and Single both places are replace from here.</small>
 						</div>
 					</div>
@@ -45,8 +45,8 @@ function wcatct_add_to_cart_text_settings_page_callback() {
 							<div class="wcatct_archive_options">
 								<div class="wcatct_archive_option_main">
 									<div class="wcatct_field">
-										<label for="wcatct_archive_txt"><?php print _e( 'Archive' ); ?></label>
-										<input type="text" id="wcatct_archive_txt" name="wcatct_archive_txt" value="<?php print get_option( 'wcatct_archive_txt' ); ?>" placeholder="<?php print _e( 'Add to Cart' ); ?>">
+										<label for="wcatct_archive_txt"><?php esc_html_e( 'Archive' ); ?></label>
+										<input type="text" id="wcatct_archive_txt" name="wcatct_archive_txt" value="<?php print esc_html(get_option( 'wcatct_archive_txt' )); ?>" placeholder="<?php esc_html_e( 'Add to Cart' ); ?>">
 										<small>All Archive products</small>
 									</div>
 								</div>
@@ -69,8 +69,8 @@ function wcatct_add_to_cart_text_settings_page_callback() {
 											if($key == 'external'){ ?>
 												<div class="wcatct_col-6">
 													<div class="wcatct_field">
-														<label for="<?php echo esc_attr($keyOption); ?>"><?php print _e( $value ); ?></label>
-														<input type="text" id="<?php echo esc_attr($keyOption); ?>" name="<?php echo esc_attr($keyOption); ?>" value="<?php print get_option( $keyOption ); ?>">
+														<label for="<?php echo esc_attr($keyOption); ?>"><?php print esc_html( $value ); ?></label>
+														<input type="text" id="<?php echo esc_attr($keyOption); ?>" name="<?php echo esc_attr($keyOption); ?>" value="<?php print esc_html(get_option( $keyOption )); ?>">
 														<small>if keep Empty, Text come form "Button text" Field</small>
 													</div>
 												</div>
@@ -78,8 +78,8 @@ function wcatct_add_to_cart_text_settings_page_callback() {
 												}else{?>
 												<div class="wcatct_col-6">
 													<div class="wcatct_field">
-														<label for="<?php echo esc_attr($keyOption); ?>"><?php print _e( $value ); ?></label>
-														<input type="text" id="<?php echo esc_attr($keyOption); ?>" name="<?php echo esc_attr($keyOption); ?>" value="<?php print get_option( $keyOption ); ?>" placeholder="<?php print _e( 'Add to Cart' ); ?>">
+														<label for="<?php echo esc_attr($keyOption); ?>"><?php print esc_html( $value ); ?></label>
+														<input type="text" id="<?php echo esc_attr($keyOption); ?>" name="<?php echo esc_attr($keyOption); ?>" value="<?php print esc_html(get_option( $keyOption )); ?>" placeholder="<?php echo esc_html__( 'Add to Cart' ); ?>">
 													</div>
 												</div>
 											<?php
@@ -94,9 +94,9 @@ function wcatct_add_to_cart_text_settings_page_callback() {
 							<div class="wcatct_single_options">
 								<div class="wcatct_single_options_main">
 									<div class="wcatct_field">
-										<label for="wcatct_single_txt"><?php print _e( 'Single' ); ?></label>
+										<label for="wcatct_single_txt"><?php echo esc_html__( 'Single' ); ?></label>
 										<input type="hidden" name="page_options" value="wcatct_single_txt">
-										<input type="text" id="wcatct_single_txt" name="wcatct_single_txt" value="<?php print get_option( 'wcatct_single_txt' ); ?>" placeholder="<?php print _e( 'Add to Cart' ); ?>">
+										<input type="text" id="wcatct_single_txt" name="wcatct_single_txt" value="<?php print esc_html(get_option( 'wcatct_single_txt' )); ?>" placeholder="<?php echo esc_html__( 'Add to Cart' ); ?>">
 										<small>All Single products</small>
 									</div>
 								</div>								
@@ -116,9 +116,9 @@ function wcatct_add_to_cart_text_settings_page_callback() {
 											if($key == 'external'){ ?>
 											<div class="wcatct_col-6">
 												<div class="wcatct_field">
-													<label for="<?php echo esc_attr($keyOption); ?>"><?php print _e( $value ); ?></label>
-													<input type="hidden" name="page_options" value="<?php echo $keyOption; ?>">
-													<input type="text" id="<?php echo $keyOption; ?>" name="<?php echo $keyOption; ?>" value="<?php print get_option( $keyOption ); ?>">
+													<label for="<?php echo esc_attr($keyOption); ?>"><?php print esc_html( $value ); ?></label>
+													<input type="hidden" name="page_options" value="<?php echo esc_html($keyOption); ?>">
+													<input type="text" id="<?php echo esc_attr($keyOption); ?>" name="<?php echo esc_attr($keyOption); ?>" value="<?php print esc_html(get_option( $keyOption )); ?>">
 													<small>if keep Empty, Text come form "Button text" Field</small>
 												</div>
 											</div>
@@ -126,12 +126,12 @@ function wcatct_add_to_cart_text_settings_page_callback() {
 											}else{?>
 											<div class="wcatct_col-6">
 												<div class="wcatct_field">
-													<label for="<?php echo esc_attr($keyOption); ?>"><?php print _e( $value ); ?></label>
-													<input type="hidden" name="page_options" value="<?php echo $keyOption; ?>">
-													<input type="text" id="<?php echo $keyOption; ?>" name="<?php echo $keyOption; ?>" value="<?php print get_option( $keyOption ); ?>" placeholder="<?php print _e( 'Add to Cart' ); ?>">
+													<label for="<?php echo esc_attr($keyOption); ?>"><?php print esc_html( $value ); ?></label>
+													<input type="hidden" name="page_options" value="<?php echo esc_attr($keyOption); ?>">
+													<input type="text" id="<?php echo esc_attr($keyOption); ?>" name="<?php echo esc_attr($keyOption); ?>" value="<?php print esc_html(get_option( $keyOption )); ?>" placeholder="<?php echo esc_html__( 'Add to Cart' ); ?>">
 												</div>
 											</div>
-											<?php 
+											<?php
 											}
 										}?>
 									</div>
@@ -143,7 +143,7 @@ function wcatct_add_to_cart_text_settings_page_callback() {
 				</div>
 				<div class="wcatct_submit_btn">
 					<input type="hidden" name="action" value="update">
-					<input type="hidden" name="page_options" value="<?php echo $page_options; ?> wcatct_global_txt, wcatct_archive_txt, wcatct_single_txt, wcatct_global_txt_diff, wcatct_product_type_txt_diff_archive, wcatct_product_type_txt_diff_single">
+					<input type="hidden" name="page_options" value="<?php echo esc_attr($page_options); ?> wcatct_global_txt, wcatct_archive_txt, wcatct_single_txt, wcatct_global_txt_diff, wcatct_product_type_txt_diff_archive, wcatct_product_type_txt_diff_single">
 					<input type="submit" value="Save Settings">
 				</div>
 			</div>
@@ -163,21 +163,21 @@ function wcatct_add_to_cart_button_text_archives_func( $add_to_cart_text, $produ
 				if ( !$cartText ){
 					$cartText = $add_to_cart_text;
 				}
-				return __( $cartText, 'change-add-to-cart-all-text' );
+				return esc_html( $cartText, 'change-add-to-cart-all-text' );
 			}
 		}else{
 			$cartText = get_option( 'wcatct_archive_txt' );
 			if( !$cartText ){
 				$cartText = $add_to_cart_text;
 			}
-			return __( $cartText, 'change-add-to-cart-all-text' );
+			return esc_html( $cartText, 'change-add-to-cart-all-text' );
 		}
 	}else{
 		$cartText = get_option( 'wcatct_global_txt' );
 		if( !$cartText ){
 			$cartText = $add_to_cart_text;
 		}
-		return __( $cartText, 'change-add-to-cart-all-text' );
+		return esc_html( $cartText, 'change-add-to-cart-all-text' );
 	}
 }
 add_filter( 'woocommerce_product_add_to_cart_text', 'wcatct_add_to_cart_button_text_archives_func', 10, 2); 
@@ -193,21 +193,21 @@ function wcatct_add_to_cart_button_text_single_func( $add_to_cart_text, $product
 				if ( !$cartText ){
 					$cartText = $add_to_cart_text;
 				}
-				return __( $cartText, 'change-add-to-cart-all-text' );
+				return esc_html( $cartText, 'change-add-to-cart-all-text' );
 			}
 		}else{
 			$cartText = get_option( 'wcatct_single_txt' );
 			if( !$cartText ){
 				$cartText = $add_to_cart_text;
 			}
-			return __( $cartText, 'change-add-to-cart-all-text' );
+			return esc_html( $cartText, 'change-add-to-cart-all-text' );
 		}
 	}else{
 		$cartText = get_option( 'wcatct_global_txt' );
 		if( !$cartText ){
 			$cartText = $add_to_cart_text;
 		}
-		return __( $cartText, 'change-add-to-cart-all-text' );
+		return esc_html( $cartText, 'change-add-to-cart-all-text' );
 	}
 }
-add_filter( 'woocommerce_product_single_add_to_cart_text', 'wcatct_add_to_cart_button_text_single_func', 10, 2); 
+add_filter( 'woocommerce_product_single_add_to_cart_text', 'wcatct_add_to_cart_button_text_single_func', 10, 2);

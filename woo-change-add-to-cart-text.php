@@ -33,7 +33,7 @@ if ( ! in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins',
 function wcatct_add_to_cart_text_admin_notice() {
     ?>
     <div class="notice notice-error is-dismissible">
-        <p><?php _e( '"Change Add to Cart All Text" requires <strong>WooCommerce</strong> to be installed and active.', 'change-add-to-cart-all-text' ); ?></p>
+        <p><?php echo esc_html__( '"Change Add to Cart All Text" requires <strong>WooCommerce</strong> to be installed and active.', 'change-add-to-cart-all-text' ); ?></p>
     </div>
     <?php
 }
@@ -47,8 +47,8 @@ function wcatct_add_to_cart_text_load_textdomain() {
 add_action( 'plugins_loaded', 'wcatct_add_to_cart_text_load_textdomain' );
 
 // Add settings link on plugin page
-function wcatct_add_to_cart_text_settings_link( $links ) {    
-    $settings_link = '<a href="'. admin_url( 'admin.php?page=woo-change-add-to-cart-text' ) .'">' . __( 'Settings', 'change-add-to-cart-all-text' ) . '</a>';
+function wcatct_add_to_cart_text_settings_link( $links ) {
+    $settings_link = '<a href="'. admin_url( 'admin.php?page=woo-change-add-to-cart-text' ) .'">' . esc_html__( 'Settings', 'change-add-to-cart-all-text' ) . '</a>';
     array_push( $links, $settings_link );
     return $links;
 }
